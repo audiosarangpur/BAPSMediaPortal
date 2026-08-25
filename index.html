@@ -4,47 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BAPS Media Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Link to UI Stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- SIDEBAR NAVIGATION -->
-    <div class="sidebar">
+    <aside class="sidebar">
         <div class="nav-item active" onclick="showHome(this)">
-            <div class="channel-avatar" style="background-color: #333;">🏠</div>
-            <span class="channel-name">Home Feed</span>
+            <div class="channel-avatar" style="background-color: #333;">⌂</div>
+            <span class="channel-name">Home</span>
         </div>
 
         <div class="divider"></div>
-        <div class="sidebar-header">Subscriptions (21)</div>
-
+        <div class="sidebar-header">Channels</div>
         <div id="sidebar-channels"></div>
-    </div>
+    </aside>
 
-    <!-- MAIN VIEWPORT -->
-    <div class="main-viewport">
+    <main class="main-viewport">
         <header>
             <div class="brand">
                 <span>BAPS Media Portal</span>
-                <span class="badge">OFFICIAL</span>
+                <span class="badge">PRIVATE</span>
             </div>
 
             <div class="search-container">
-                <input type="text" id="search-input" class="search-input" placeholder="Search channels..." onkeyup="filterChannels()">
-                <button class="search-btn">🔍</button>
+                <input type="text" id="search-input" class="search-input" placeholder="Search videos, channels..." oninput="filterChannels()">
+                <button class="search-btn" onclick="filterChannels()" aria-label="Search">⌕</button>
             </div>
         </header>
 
-        <div class="content-area">
-            <h2 id="page-title" class="page-title">Recently Uploaded Feed</h2>
-            <div id="video-grid" class="video-grid"></div>
-        </div>
-    </div>
+        <section class="content-area">
+            <div id="home-view"></div>
+            <div id="results-view" hidden>
+                <h2 id="page-title" class="page-title">Search Results</h2>
+                <div id="video-grid" class="video-grid"></div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Link to Logic JavaScript File -->
     <script src="app.js"></script>
 </body>
 </html>
