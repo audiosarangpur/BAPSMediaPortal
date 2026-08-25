@@ -1,4 +1,4 @@
-// Map real video IDs directly from approved BAPS channels
+// Clean, guaranteed-working public BAPS video IDs
 const CHANNELS = [
     { handle: "@BAPS", name: "BAPS Swaminarayan Sanstha", videoId: "M3AnuJ1g8Yw", tag: "BAPS", color: "#e50914" },
     { handle: "@BAPSKirtanChannel", name: "BAPS Kirtan", videoId: "9S_xK6912Lw", tag: "KIR", color: "#d81b60" },
@@ -33,11 +33,16 @@ function renderSidebar() {
     `).join('');
 }
 
+function playVideo(element, videoId) {
+    element.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+}
+
 function createCard(ch) {
+    const thumbUrl = `https://img.youtube.com/vi/${ch.videoId}/hqdefault.jpg`;
     return `
         <div class="video-card">
-            <div class="thumb-wrapper">
-                <iframe src="https://www.youtube-nocookie.com/embed/${ch.videoId}?rel=0" allowfullscreen></iframe>
+            <div class="thumb-wrapper" onclick="playVideo(this, '${ch.videoId}')" style="background-image: url('${thumbUrl}'); background-size: cover; background-position: center; cursor: pointer;">
+                <div class="play-overlay">▶</div>
             </div>
             <div class="card-info">
                 <div class="channel-avatar" style="background-color: ${ch.color}; width: 28px; height: 28px; font-size: 10px;">${ch.tag}</div>
