@@ -1,145 +1,134 @@
 const CHANNELS = [
-    { handle: "@BAPS", name: "BAPS Swaminarayan Sanstha", videoId: "M3AnuJ1g8Yw", tag: "BAPS", color: "#d9782d" },
-    { handle: "@BAPSKirtanChannel", name: "BAPS Kirtan", videoId: "9S_xK6912Lw", tag: "KIR", color: "#8d4aa8" },
-    { handle: "@Aksharpith", name: "Aksharpith", videoId: "W_A649_1Ld8", tag: "AKS", color: "#496b9d" },
-    { handle: "@bapsbetterliving", name: "BAPS Better Living", videoId: "T7yG7e15m88", tag: "BET", color: "#2d8a7b" },
-    { handle: "@bapscharities", name: "BAPS Charities", videoId: "yP30L8q4U1k", tag: "CHA", color: "#6b78b8" },
-    { handle: "@BAPSsatsang_GUJ", name: "BAPS Satsang Gujarati", videoId: "d97S3E1S18A", tag: "GUJ", color: "#3c8ab8" },
-    { handle: "@BAPSSatsang_HIN", name: "BAPS Satsang Hindi", videoId: "X8M8aW_8A7k", tag: "HIN", color: "#3d9c91" },
-    { handle: "@BAPSsatsang_ENG", name: "BAPS Satsang English", videoId: "J8aA8E0W7A8", tag: "ENG", color: "#487f9b" },
-    { handle: "@BAPSEvent", name: "BAPS Events", videoId: "d97S3E1S18A", tag: "EVE", color: "#8b6a42" },
-    { handle: "@BAPSKidsWorld", name: "BAPS Kids World", videoId: "W_A649_1Ld8", tag: "KID", color: "#6b9d4a" },
-    { handle: "@Swaminarayan_Yatra", name: "Swaminarayan Yatra", videoId: "d97S3E1S18A", tag: "YAT", color: "#71914c" },
-    { handle: "@AkshardhamUSA", name: "Akshardham USA", videoId: "M3AnuJ1g8Yw", tag: "USA", color: "#a29a48" },
-    { handle: "@BAPSAmerica", name: "BAPS North America", videoId: "J8aA8E0W7A8", tag: "NAM", color: "#b48a36" },
-    { handle: "@BAPSUKEurope", name: "BAPS UK & Europe", videoId: "X8M8aW_8A7k", tag: "EUR", color: "#b36f38" },
-    { handle: "@BAPSCanada", name: "BAPS Canada", videoId: "d97S3E1S18A", tag: "CAN", color: "#9a6540" },
-    { handle: "@BAPSAfrica", name: "BAPS Africa", videoId: "W_A649_1Ld8", tag: "AFR", color: "#a35435" },
-    { handle: "@BAPSANZ", name: "BAPS Asia Pacific", videoId: "9S_xK6912Lw", tag: "ANZ", color: "#73594b" },
-    { handle: "@abudhabimandir", name: "BAPS Hindu Mandir Abu Dhabi", videoId: "M3AnuJ1g8Yw", tag: "ABU", color: "#607581" },
-    { handle: "@BAPSIndia", name: "BAPS India", videoId: "X8M8aW_8A7k", tag: "IND", color: "#727b84" },
-    { handle: "@bapslive", name: "BAPS Live", videoId: "9S_xK6912Lw", tag: "LIVE", color: "#bf583a" },
-    { handle: "@SantParamHitkari", name: "Sant Param Hitkari", videoId: "W_A649_1Ld8", tag: "SPH", color: "#785b9b" }
-];
+    ["@BAPS","BAPS Swaminarayan Sanstha","M3AnuJ1g8Yw","BAPS","#d9782d"], ["@BAPSKirtanChannel","BAPS Kirtan","9S_xK6912Lw","KIR","#8d4aa8"],
+    ["@Aksharpith","Aksharpith","W_A649_1Ld8","AKS","#496b9d"], ["@bapsbetterliving","BAPS Better Living","T7yG7e15m88","BET","#2d8a7b"],
+    ["@bapscharities","BAPS Charities","yP30L8q4U1k","CHA","#6b78b8"], ["@BAPSsatsang_GUJ","BAPS Satsang Gujarati","d97S3E1S18A","GUJ","#3c8ab8"],
+    ["@BAPSSatsang_HIN","BAPS Satsang Hindi","X8M8aW_8A7k","HIN","#3d9c91"], ["@BAPSsatsang_ENG","BAPS Satsang English","J8aA8E0W7A8","ENG","#487f9b"],
+    ["@BAPSEvent","BAPS Events","d97S3E1S18A","EVE","#8b6a42"], ["@BAPSKidsWorld","BAPS Kids World","W_A649_1Ld8","KID","#6b9d4a"],
+    ["@Swaminarayan_Yatra","Swaminarayan Yatra","d97S3E1S18A","YAT","#71914c"], ["@AkshardhamUSA","Akshardham USA","M3AnuJ1g8Yw","USA","#a29a48"],
+    ["@BAPSAmerica","BAPS North America","J8aA8E0W7A8","NAM","#b48a36"], ["@BAPSUKEurope","BAPS UK & Europe","X8M8aW_8A7k","EUR","#b36f38"],
+    ["@BAPSCanada","BAPS Canada","d97S3E1S18A","CAN","#9a6540"], ["@BAPSAfrica","BAPS Africa","W_A649_1Ld8","AFR","#a35435"],
+    ["@BAPSANZ","BAPS Asia Pacific","9S_xK6912Lw","ANZ","#73594b"], ["@abudhabimandir","BAPS Hindu Mandir Abu Dhabi","M3AnuJ1g8Yw","ABU","#607581"],
+    ["@BAPSIndia","BAPS India","X8M8aW_8A7k","IND","#727b84"], ["@bapslive","BAPS Live","9S_xK6912Lw","LIVE","#bf583a"],
+    ["@SantParamHitkari","Sant Param Hitkari","W_A649_1Ld8","SPH","#785b9b"]
+].map(([handle,name,videoId,tag,color]) => ({handle,name,videoId,tag,color,videos:[],loaded:false}));
 
-const HOME_ROWS = [
-    { title: "Latest from all channels", channels: CHANNELS.slice(0, 6) },
-    { title: "Featured channels", channels: [CHANNELS[0], CHANNELS[1], CHANNELS[2], CHANNELS[3], CHANNELS[8], CHANNELS[9]] },
-    { title: "Satsang", channels: [CHANNELS[5], CHANNELS[6], CHANNELS[7], CHANNELS[20], CHANNELS[2], CHANNELS[10]] },
-    { title: "Around the world", channels: [CHANNELS[11], CHANNELS[12], CHANNELS[13], CHANNELS[14], CHANNELS[15], CHANNELS[16], CHANNELS[17], CHANNELS[18]] }
-];
+const API_KEY = window.BAPS_PORTAL_CONFIG?.YOUTUBE_API_KEY?.trim();
+const VIDEOS_PER_CHANNEL = 8;
+let loadingPromise = null;
+
+function esc(value='') { return String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function thumb(video) { return video.thumbnail || `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`; }
+function dateLabel(date) { if (!date) return ''; return new Intl.DateTimeFormat(undefined,{year:'numeric',month:'short',day:'numeric'}).format(new Date(date)); }
 
 function renderSidebar() {
-    const container = document.getElementById('sidebar-channels');
-    container.innerHTML = CHANNELS.map(ch => `
-        <div class="nav-item" onclick="showChannel('${ch.handle}', this)">
-            <div class="channel-avatar" style="background-color:${ch.color}">${ch.tag}</div>
-            <span class="channel-name" title="${ch.name}">${ch.name}</span>
-        </div>
-    `).join('');
+    document.getElementById('sidebar-channels').innerHTML = CHANNELS.map(ch => `<div class="nav-item" onclick="showChannel('${ch.handle}',this)"><div class="channel-avatar" style="background:${ch.color}">${ch.tag}</div><span class="channel-name" title="${esc(ch.name)}">${esc(ch.name)}</span></div>`).join('');
 }
 
-function thumbnail(ch) {
-    return `https://img.youtube.com/vi/${ch.videoId}/hqdefault.jpg`;
+function fallbackVideos(ch) {
+    return Array.from({length: 6}, (_,i) => ({
+        id: ch.videoId,
+        title: i === 0 ? `${ch.name} — Latest video` : `${ch.name} — Video ${i + 1}`,
+        publishedAt: new Date(Date.now() - i * 86400000).toISOString(),
+        thumbnail: `https://img.youtube.com/vi/${ch.videoId}/hqdefault.jpg`,
+        channel: ch
+    }));
 }
 
-function playVideo(element, videoId) {
-    element.innerHTML = `<iframe title="Video player" src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+async function api(path, params) {
+    const url = new URL(`https://www.googleapis.com/youtube/v3/${path}`);
+    Object.entries({...params,key:API_KEY}).forEach(([k,v]) => url.searchParams.set(k,v));
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(`YouTube API ${response.status}`);
+    return response.json();
 }
 
-function createCard(ch) {
-    return `
-        <article class="video-card">
-            <div class="thumb-wrapper" onclick="playVideo(this, '${ch.videoId}')" style="background-image:url('${thumbnail(ch)}'); cursor:pointer;">
-                <div class="play-overlay">▶</div>
-            </div>
-            <div class="card-info">
-                <div class="channel-avatar" style="background-color:${ch.color}">${ch.tag}</div>
-                <div>
-                    <div class="video-title">${ch.name}</div>
-                    <div class="video-channel">${ch.handle}</div>
-                </div>
-            </div>
-        </article>`;
+async function loadChannelVideos(ch) {
+    if (!API_KEY) { ch.videos = fallbackVideos(ch); ch.loaded = true; return; }
+    try {
+        const channelData = await api('channels',{part:'contentDetails',forHandle:ch.handle});
+        const channel = channelData.items?.[0];
+        if (!channel) throw new Error('Channel not found');
+        const uploads = channel.contentDetails.relatedPlaylists.uploads;
+        const items = await api('playlistItems',{part:'snippet,contentDetails',playlistId:uploads,maxResults:VIDEOS_PER_CHANNEL});
+        ch.videos = items.items.map(item => ({
+            id:item.contentDetails.videoId,
+            title:item.snippet.title,
+            publishedAt:item.contentDetails.videoPublishedAt || item.snippet.publishedAt,
+            thumbnail:item.snippet.thumbnails?.high?.url || item.snippet.thumbnails?.medium?.url,
+            channel:ch
+        }));
+        if (!ch.videos.length) ch.videos = fallbackVideos(ch);
+    } catch (error) {
+        console.warn(`Could not load ${ch.name}:`, error);
+        ch.videos = fallbackVideos(ch);
+    }
+    ch.loaded = true;
+}
+
+async function loadAllVideos() {
+    if (loadingPromise) return loadingPromise;
+    loadingPromise = Promise.all(CHANNELS.map(loadChannelVideos));
+    return loadingPromise;
+}
+
+function createCard(video) {
+    const ch = video.channel;
+    return `<article class="video-card" onclick="openVideo('${video.id}')"><div class="thumb-wrapper" style="background-image:url('${thumb(video)}')"><div class="play-overlay">▶</div></div><div class="card-info"><div class="channel-avatar" style="background:${ch.color}">${ch.tag}</div><div><div class="video-title">${esc(video.title)}</div><div class="video-channel">${esc(ch.name)}${video.publishedAt ? ` · ${dateLabel(video.publishedAt)}` : ''}</div></div></div></article>`;
+}
+
+function renderLoading() {
+    document.getElementById('home-view').innerHTML = `<div class="home-heading"><div><h1>Home</h1><p>Loading the latest videos from your channels…</p></div></div><div class="portal-loading"><span></span><span></span><span></span></div>`;
 }
 
 function renderHome() {
-    const home = document.getElementById('home-view');
-    const greeting = `
-        <div class="home-heading">
-            <div>
-                <h1>Home</h1>
-                <p>Latest videos from your channels</p>
-            </div>
-        </div>`;
+    const allVideos = CHANNELS.flatMap(ch => ch.videos).sort((a,b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+    const latest = allVideos.slice(0,8);
+    const rows = CHANNELS.filter(ch => ch.videos.length).map(ch => ({title:`Latest from ${ch.name}`,channel:ch,videos:ch.videos.slice(0,VIDEOS_PER_CHANNEL)}));
+    document.getElementById('home-view').innerHTML = `<div class="home-heading"><div><h1>Home</h1><p>Latest videos from your channels</p></div>${API_KEY ? '' : '<div class="demo-notice">Demo data · Add an API key in config.js for live latest videos</div>'}</div>${latest.length ? rowMarkup('Latest from all channels',latest,null,true) : ''}${rows.map(r => rowMarkup(r.title,r.videos,r.channel)).join('')}`;
+}
 
-    home.innerHTML = greeting + HOME_ROWS.map((row, index) => `
-        <section class="content-row ${index === 0 ? 'content-row-first' : ''}">
-            <div class="section-heading">
-                <h2>${row.title}</h2>
-                <button class="view-all-btn" onclick="showRow(${index})">View all <span>›</span></button>
-            </div>
-            <div class="video-strip">
-                ${row.channels.map(createCard).join('')}
-            </div>
-        </section>
-    `).join('');
+function rowMarkup(title,videos,ch,first=false) {
+    return `<section class="content-row ${first?'content-row-first':''}"><div class="section-heading"><h2>${esc(title)}</h2><button class="view-all-btn" onclick="showAll('${ch?.handle || '__latest'}')">View all <span>›</span></button></div><div class="video-strip">${videos.map(createCard).join('')}</div></section>`;
 }
 
 function showHome(element) {
     if (element) setActive(element);
-    document.getElementById('search-input').value = '';
-    document.getElementById('home-view').hidden = false;
-    document.getElementById('results-view').hidden = true;
+    document.getElementById('search-input').value='';
+    document.getElementById('home-view').hidden=false;
+    document.getElementById('results-view').hidden=true;
     renderHome();
 }
 
-function showRow(index) {
-    const row = HOME_ROWS[index];
-    document.getElementById('home-view').hidden = true;
-    document.getElementById('results-view').hidden = false;
-    document.getElementById('page-title').textContent = row.title;
-    document.getElementById('video-grid').innerHTML = row.channels.map(createCard).join('');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function showChannel(handle, element) {
-    setActive(element);
-    const ch = CHANNELS.find(c => c.handle === handle);
-    document.getElementById('search-input').value = '';
-    document.getElementById('home-view').hidden = true;
-    document.getElementById('results-view').hidden = false;
-    document.getElementById('page-title').textContent = ch.name;
-    document.getElementById('video-grid').innerHTML = createCard(ch);
-}
-
-function filterChannels() {
-    const query = document.getElementById('search-input').value.trim().toLowerCase();
-    if (!query) {
-        showHome(document.querySelector('.nav-item'));
+function showAll(handle) {
+    if (handle === '__latest') {
+        const videos = CHANNELS.flatMap(ch=>ch.videos).sort((a,b)=>new Date(b.publishedAt)-new Date(a.publishedAt));
+        showResults('Latest from all channels',videos,'All recent uploads');
         return;
     }
-
-    document.getElementById('home-view').hidden = true;
-    document.getElementById('results-view').hidden = false;
-    document.getElementById('page-title').textContent = `Search results for “${query}”`;
-    const filtered = CHANNELS.filter(ch =>
-        ch.name.toLowerCase().includes(query) ||
-        ch.handle.toLowerCase().includes(query) ||
-        ch.tag.toLowerCase().includes(query)
-    );
-
-    document.getElementById('video-grid').innerHTML = filtered.length
-        ? filtered.map(createCard).join('')
-        : `<div class="empty-state"><strong>No channels found</strong><span>Try a different search.</span></div>`;
+    const ch = CHANNELS.find(c=>c.handle===handle);
+    showResults(ch.name,ch.videos,`${ch.videos.length} recent videos`);
 }
 
-function setActive(element) {
-    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-    if (element) element.classList.add('active');
+function showChannel(handle,element) { setActive(element); const ch=CHANNELS.find(c=>c.handle===handle); showResults(ch.name,ch.videos,`${ch.videos.length} recent videos`); }
+function showResults(title,videos,subtitle='') {
+    document.getElementById('home-view').hidden=true; document.getElementById('results-view').hidden=false;
+    document.getElementById('page-title').textContent=title; document.getElementById('page-subtitle').textContent=subtitle;
+    document.getElementById('video-grid').innerHTML=videos.length ? videos.map(createCard).join('') : `<div class="empty-state"><strong>No videos found</strong><span>Try again later.</span></div>`;
+    document.getElementById('content-area').scrollTo({top:0,behavior:'smooth'});
 }
 
-window.onload = function () {
-    renderSidebar();
+function filterVideos() {
+    const q=document.getElementById('search-input').value.trim().toLowerCase();
+    if (!q) return showHome(document.querySelector('.nav-item'));
+    const videos=CHANNELS.flatMap(ch=>ch.videos).filter(v=>v.title.toLowerCase().includes(q)||v.channel.name.toLowerCase().includes(q)||v.channel.handle.toLowerCase().includes(q));
+    showResults(`Search results for “${q}”`,videos,`${videos.length} ${videos.length===1?'video':'videos'} found`);
+}
+
+function openVideo(videoId) { window.open(`https://www.youtube.com/watch?v=${videoId}`,'_blank','noopener'); }
+function setActive(element) { document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active')); if(element) element.classList.add('active'); }
+
+window.onload = async () => {
+    renderSidebar(); renderLoading();
+    await loadAllVideos();
     showHome(document.querySelector('.nav-item'));
 };
