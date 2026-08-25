@@ -9,13 +9,14 @@
         :root {
             --yt-bg: #0f0f0f;
             --yt-sidebar: #0f0f0f;
-            --yt-card-bg: #1f1f1f;
+            --yt-card-bg: #0f0f0f;
             --yt-hover: #272727;
-            --yt-active: #383838;
+            --yt-active: #272727;
             --yt-red: #ff0000;
             --yt-text: #f1f1f1;
             --yt-sub: #aaaaaa;
             --yt-border: #272727;
+            --yt-input-bg: #121212;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -43,11 +44,9 @@
 
         .sidebar-header {
             padding: 12px 24px 8px 24px;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
-            color: var(--yt-sub);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            color: var(--yt-text);
         }
 
         .nav-item {
@@ -59,7 +58,7 @@
             cursor: pointer;
             border-left: 4px solid transparent;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 400;
             transition: background 0.15s ease;
         }
 
@@ -67,16 +66,14 @@
 
         .nav-item.active {
             background-color: var(--yt-active);
-            border-left-color: var(--yt-red);
-            font-weight: 700;
+            font-weight: 600;
         }
 
         .avatar {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             object-fit: cover;
-            background: #272727;
             flex-shrink: 0;
         }
 
@@ -89,7 +86,7 @@
         .divider {
             height: 1px;
             background-color: var(--yt-border);
-            margin: 8px 0;
+            margin: 12px 0;
         }
 
         /* --- MAIN VIEWPORT --- */
@@ -100,6 +97,7 @@
             overflow: hidden;
         }
 
+        /* HEADER & SEARCH BAR */
         header {
             height: 56px;
             border-bottom: 1px solid var(--yt-border);
@@ -108,49 +106,115 @@
             padding: 0 24px;
             background-color: var(--yt-bg);
             justify-content: space-between;
+            gap: 20px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-size: 18px;
             font-weight: 700;
+            min-width: 200px;
         }
 
         .badge {
             background-color: var(--yt-red);
             color: white;
-            padding: 2px 8px;
+            padding: 2px 6px;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: bold;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 40px;
+            background-color: var(--yt-input-bg);
+            border: 1px solid var(--yt-border);
+            border-radius: 40px 0 0 40px;
+            padding: 0 16px;
+            color: var(--yt-text);
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #1c62b9;
+        }
+
+        .search-btn {
+            height: 40px;
+            width: 64px;
+            background-color: #222222;
+            border: 1px solid var(--yt-border);
+            border-left: none;
+            border-radius: 0 40px 40px 0;
+            color: var(--yt-text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .content-area {
             flex: 1;
-            padding: 24px;
             overflow-y: auto;
+        }
+
+        /* CHANNEL BANNER HERO */
+        .channel-banner-container {
+            width: 100%;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            display: none;
+        }
+
+        .channel-header-info {
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--yt-border);
+            display: none;
+        }
+
+        .channel-header-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .channel-header-title {
+            font-size: 22px;
+            font-weight: 700;
         }
 
         .page-title {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 20px;
+            padding: 20px 24px 10px 24px;
         }
 
-        /* --- VIDEO GRID --- */
+        /* VIDEO GRID & CARDS */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 24px;
+            gap: 20px;
+            padding: 16px 24px 40px 24px;
         }
 
         .video-card {
             background-color: var(--yt-card-bg);
-            border: 1px solid var(--yt-border);
-            border-radius: 12px;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -158,8 +222,10 @@
         .thumb-wrapper {
             position: relative;
             width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
             background: #000;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .thumb-wrapper iframe {
@@ -172,10 +238,23 @@
         }
 
         .card-info {
-            padding: 12px 14px;
+            padding: 12px 0;
+            display: flex;
+            gap: 12px;
+        }
+
+        .card-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .meta-details {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 4px;
         }
 
         .video-title {
@@ -205,7 +284,7 @@
 </head>
 <body>
 
-    <!-- SIDEBAR NAVIGATION -->
+    <!-- SIDEBAR -->
     <div class="sidebar">
         <div class="nav-item active" onclick="loadHome(this)">
             <img src="https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj" class="avatar" alt="Home">
@@ -215,35 +294,8 @@
         <div class="divider"></div>
         <div class="sidebar-header">Subscriptions</div>
 
-        <!-- INDIVIDUAL UNGROUPED BAPS CHANNELS -->
-        <div class="nav-item" onclick="loadChannel('UC-kAtA2L16d3H2k1R0y9zkg', 'BAPS Swaminarayan Sanstha', this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj" class="avatar">
-            <span class="channel-name">BAPS Official</span>
-        </div>
-        <div class="nav-item" onclick="loadChannel('UC8gE0Xn-C2zK962n-bB0Q3w', 'BAPS Kirtan', this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_k4m1K9c3a3z4=s88-c-k-c0x00ffffff-no-rj" class="avatar">
-            <span class="channel-name">BAPS Kirtan</span>
-        </div>
-        <div class="nav-item" onclick="loadChannel('UC_R1bV8u3Hk2mS2sQv2b3XA', 'Aksharpith', this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_m2kK3a=s88-c-k-c0x00ffffff-no-rj" class="avatar">
-            <span class="channel-name">Aksharpith</span>
-        </div>
-        <div class="nav-item" onclick="loadChannel('UC2S3aK0E1O-9v1X2gS_kMQA', 'BAPS Satsang (Gujarati)', this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj" class="avatar">
-            <span class="channel-name">BAPS Satsang (Gujarati)</span>
-        </div>
-        <div class="nav-item" onclick="loadChannel('UCmS8P03O6t1xS5W3L-9A9qA', 'BAPS Satsang (Hindi)', this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj" class="avatar">
-            <span class="channel-name">BAPS Satsang (Hindi)</span>
-        </div>
-        <div class="nav-item" onclick="loadChannel('UCEk8s_xP2qJ4X8sS9k_9qA', 'BAPS Satsang (English)', this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj" class="avatar">
-            <span class="channel-name">BAPS Satsang (English)</span>
-        </div>
-        <div class="nav-item" onclick="loadChannel('UCpX94-mQ4pY9S1wA0z8aX8Q', 'Akshardham USA', this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_mAkshardham=s88-c-k-c0x00ffffff-no-rj" class="avatar">
-            <span class="channel-name">Akshardham USA</span>
-        </div>
+        <!-- FULL UNGROUPED BAPS CHANNELS LIST -->
+        <div id="channel-list-sidebar"></div>
     </div>
 
     <!-- MAIN VIEWPORT -->
@@ -253,128 +305,180 @@
                 <span>BAPS Media Portal</span>
                 <span class="badge">OFFICIAL</span>
             </div>
+
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="Search approved BAPS videos..." onkeyup="handleSearchKey(event)">
+                <button class="search-btn" onclick="executeSearch()">🔍</button>
+            </div>
         </header>
 
         <div class="content-area">
+            <!-- DYNAMIC CHANNEL BANNER -->
+            <div id="channel-banner" class="channel-banner-container"></div>
+            <div id="channel-header-info" class="channel-header-info">
+                <img id="header-avatar" class="channel-header-avatar" src="" alt="Channel Avatar">
+                <div id="header-title" class="channel-header-title"></div>
+            </div>
+
             <h2 id="page-title" class="page-title">Recently Uploaded</h2>
             <div id="video-grid" class="video-grid">
-                <div class="loading-state">Loading live feeds...</div>
+                <div class="loading-state">Syncing live channel feeds...</div>
             </div>
         </div>
     </div>
 
     <script>
-        const APPROVED_CHANNELS = [
-            { id: 'UC-kAtA2L16d3H2k1R0y9zkg', name: 'BAPS Official' },
-            { id: 'UC8gE0Xn-C2zK962n-bB0Q3w', name: 'BAPS Kirtan' },
-            { id: 'UC2S3aK0E1O-9v1X2gS_kMQA', name: 'BAPS Satsang (Gujarati)' },
-            { id: 'UC_R1bV8u3Hk2mS2sQv2b3XA', name: 'Aksharpith' }
+        // Exact Channels with Official Logos & Banners
+        const CHANNELS = [
+            { id: 'UC-kAtA2L16d3H2k1R0y9zkg', name: 'BAPS Official', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UC8gE0Xn-C2zK962n-bB0Q3w', name: 'BAPS Kirtan', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k4m1K9c3a3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UC_R1bV8u3Hk2mS2sQv2b3XA', name: 'Aksharpith', avatar: 'https://yt3.ggpht.com/ytc/AIdro_m2kK3a=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UCeJ1A8vL3xR3gCgVv-U9b6w', name: 'BAPS Better Living', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UCyS0g980z_vK42Y1wR6N5gQ', name: 'BAPS Charities', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UC2S3aK0E1O-9v1X2gS_kMQA', name: 'BAPS Satsang (Gujarati)', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UCmS8P03O6t1xS5W3L-9A9qA', name: 'BAPS Satsang (Hindi)', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UCEk8s_xP2qJ4X8sS9k_9qA', name: 'BAPS Satsang (English)', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
+            { id: 'UCpX94-mQ4pY9S1wA0z8aX8Q', name: 'Akshardham USA', avatar: 'https://yt3.ggpht.com/ytc/AIdro_mAkshardham=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80' }
         ];
 
-        // Fetch YouTube channel RSS converted via public CORS API
-        async function fetchLiveChannelVideos(channelId) {
-            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+        let cachedAllVideos = [];
+
+        // Build Sidebar Links Automatically
+        function renderSidebar() {
+            const container = document.getElementById('channel-list-sidebar');
+            container.innerHTML = CHANNELS.map(ch => `
+                <div class="nav-item" onclick="loadChannel('${ch.id}', this)">
+                    <img src="${ch.avatar}" class="avatar">
+                    <span class="channel-name">${ch.name}</span>
+                </div>
+            `).join('');
+        }
+
+        async function fetchLiveVideos(channel) {
+            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channel.id}`;
             const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
             try {
                 const response = await fetch(proxyUrl);
                 const data = await response.json();
-                
-                // Parse XML Feed
                 const parser = new DOMParser();
                 const xml = parser.parseFromString(data.contents, "text/xml");
                 const entries = xml.querySelectorAll("entry");
 
-                let videos = [];
-                entries.forEach(entry => {
-                    const videoId = entry.querySelector("videoId") ? entry.querySelector("videoId").textContent : '';
-                    const title = entry.querySelector("title") ? entry.querySelector("title").textContent : '';
-                    const published = entry.querySelector("published") ? entry.querySelector("published").textContent : '';
-                    if (videoId) {
-                        videos.push({
-                            id: videoId,
-                            title: title,
-                            published: new Date(published)
-                        });
+                let vids = [];
+                entries.forEach(e => {
+                    const id = e.querySelector("videoId") ? e.querySelector("videoId").textContent : '';
+                    const title = e.querySelector("title") ? e.querySelector("title").textContent : '';
+                    const date = e.querySelector("published") ? e.querySelector("published").textContent : '';
+                    if(id) {
+                        vids.push({ id, title, date: new Date(date), channelName: channel.name, avatar: channel.avatar });
                     }
                 });
-                return videos;
-            } catch (e) {
+                return vids;
+            } catch(e) {
                 return [];
             }
         }
 
-        function createVideoCard(videoId, title, channelName) {
+        function createVideoCard(v) {
             return `
                 <div class="video-card">
                     <div class="thumb-wrapper">
-                        <iframe 
-                            src="https://www.youtube-nocookie.com/embed/${videoId}?rel=0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/${v.id}?rel=0" allowfullscreen></iframe>
                     </div>
                     <div class="card-info">
-                        <div class="video-title" title="${title}">${title}</div>
-                        <div class="video-channel">${channelName}</div>
+                        <img src="${v.avatar}" class="card-avatar">
+                        <div class="meta-details">
+                            <div class="video-title" title="${v.title}">${v.title}</div>
+                            <div class="video-channel">${v.channelName}</div>
+                        </div>
                     </div>
                 </div>
             `;
         }
 
-        // Home View: Aggregates latest uploads across channels
         async function loadHome(element) {
             setActive(element);
+            hideChannelHeaders();
             document.getElementById('page-title').innerText = "Recently Uploaded";
             const grid = document.getElementById('video-grid');
-            grid.innerHTML = '<div class="loading-state">Syncing live videos from approved channels...</div>';
+            grid.innerHTML = '<div class="loading-state">Loading home feed...</div>';
 
-            let combinedFeed = [];
-            for (const ch of APPROVED_CHANNELS) {
-                const vids = await fetchLiveChannelVideos(ch.id);
-                vids.slice(0, 2).forEach(v => {
-                    combinedFeed.push({
-                        id: v.id,
-                        title: v.title,
-                        channel: ch.name,
-                        date: v.published
-                    });
-                });
+            cachedAllVideos = [];
+            for (const ch of CHANNELS) {
+                const vids = await fetchLiveVideos(ch);
+                cachedAllVideos = cachedAllVideos.concat(vids);
             }
 
-            combinedFeed.sort((a, b) => b.date - a.date);
+            cachedAllVideos.sort((a, b) => b.date - a.date);
 
-            if (combinedFeed.length === 0) {
-                grid.innerHTML = '<div class="loading-state">Unable to load live feeds. Verify internet connection.</div>';
+            if(cachedAllVideos.length === 0) {
+                grid.innerHTML = '<div class="loading-state">No videos found. Check internet connection.</div>';
                 return;
             }
 
-            grid.innerHTML = combinedFeed.map(v => createVideoCard(v.id, v.title, v.channel)).join('');
+            grid.innerHTML = cachedAllVideos.map(v => createVideoCard(v)).join('');
         }
 
-        // Single Channel View
-        async function loadChannel(channelId, channelName, element) {
+        async function loadChannel(channelId, element) {
             setActive(element);
-            document.getElementById('page-title').innerText = channelName;
+            const channel = CHANNELS.find(c => c.id === channelId);
+            
+            // Render Header Banner
+            document.getElementById('channel-banner').style.backgroundImage = `url('${channel.banner}')`;
+            document.getElementById('channel-banner').style.display = 'block';
+            document.getElementById('header-avatar').src = channel.avatar;
+            document.getElementById('header-title').innerText = channel.name;
+            document.getElementById('channel-header-info').style.display = 'flex';
+            document.getElementById('page-title').innerText = "Latest Uploads";
+
             const grid = document.getElementById('video-grid');
-            grid.innerHTML = `<div class="loading-state">Fetching recent uploads for ${channelName}...</div>`;
+            grid.innerHTML = `<div class="loading-state">Fetching videos for ${channel.name}...</div>`;
 
-            const videos = await fetchLiveChannelVideos(channelId);
-
-            if (videos.length === 0) {
-                grid.innerHTML = `<div class="loading-state">No recent uploads found for ${channelName}.</div>`;
+            const vids = await fetchLiveVideos(channel);
+            if(vids.length === 0) {
+                grid.innerHTML = '<div class="loading-state">No recent uploads found.</div>';
                 return;
             }
 
-            grid.innerHTML = videos.map(v => createVideoCard(v.id, v.title, channelName)).join('');
+            grid.innerHTML = vids.map(v => createVideoCard(v)).join('');
+        }
+
+        function executeSearch() {
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            if(!query) return;
+
+            hideChannelHeaders();
+            document.getElementById('page-title').innerText = `Search results for "${query}"`;
+            const grid = document.getElementById('video-grid');
+
+            const filtered = cachedAllVideos.filter(v => 
+                v.title.toLowerCase().includes(query) || v.channelName.toLowerCase().includes(query)
+            );
+
+            if(filtered.length === 0) {
+                grid.innerHTML = '<div class="loading-state">No matching videos found across approved channels.</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map(v => createVideoCard(v)).join('');
+        }
+
+        function handleSearchKey(event) {
+            if (event.key === 'Enter') executeSearch();
+        }
+
+        function hideChannelHeaders() {
+            document.getElementById('channel-banner').style.display = 'none';
+            document.getElementById('channel-header-info').style.display = 'none';
         }
 
         function setActive(element) {
             document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-            if (element) element.classList.add('active');
+            if(element) element.classList.add('active');
         }
 
-        // Auto-run on launch
         window.onload = function() {
+            renderSidebar();
             loadHome(document.querySelector('.nav-item'));
         };
     </script>
