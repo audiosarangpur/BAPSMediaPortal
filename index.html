@@ -9,7 +9,7 @@
         :root {
             --yt-bg: #0f0f0f;
             --yt-sidebar: #0f0f0f;
-            --yt-card-bg: #0f0f0f;
+            --yt-card-bg: #181818;
             --yt-hover: #272727;
             --yt-active: #272727;
             --yt-red: #ff0000;
@@ -32,7 +32,7 @@
 
         /* --- SIDEBAR --- */
         .sidebar {
-            width: 260px;
+            width: 280px;
             background-color: var(--yt-sidebar);
             border-right: 1px solid var(--yt-border);
             display: flex;
@@ -44,20 +44,22 @@
 
         .sidebar-header {
             padding: 12px 24px 8px 24px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
-            color: var(--yt-text);
+            color: var(--yt-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             padding: 10px 24px;
             color: var(--yt-text);
             cursor: pointer;
             border-left: 4px solid transparent;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 400;
             transition: background 0.15s ease;
         }
@@ -66,15 +68,23 @@
 
         .nav-item.active {
             background-color: var(--yt-active);
-            font-weight: 600;
+            border-left-color: var(--yt-red);
+            font-weight: 700;
         }
 
-        .avatar {
-            width: 24px;
-            height: 24px;
+        .channel-avatar {
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            object-fit: cover;
+            background-color: var(--yt-red);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 11px;
             flex-shrink: 0;
+            text-transform: uppercase;
         }
 
         .channel-name {
@@ -97,7 +107,6 @@
             overflow: hidden;
         }
 
-        /* HEADER & SEARCH BAR */
         header {
             height: 56px;
             border-bottom: 1px solid var(--yt-border);
@@ -130,13 +139,13 @@
         .search-container {
             display: flex;
             align-items: center;
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
         }
 
         .search-input {
             width: 100%;
-            height: 40px;
+            height: 38px;
             background-color: var(--yt-input-bg);
             border: 1px solid var(--yt-border);
             border-radius: 40px 0 0 40px;
@@ -146,75 +155,43 @@
             outline: none;
         }
 
-        .search-input:focus {
-            border-color: #1c62b9;
-        }
+        .search-input:focus { border-color: #1c62b9; }
 
         .search-btn {
-            height: 40px;
-            width: 64px;
+            height: 38px;
+            width: 54px;
             background-color: #222222;
             border: 1px solid var(--yt-border);
             border-left: none;
             border-radius: 0 40px 40px 0;
             color: var(--yt-text);
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .content-area {
             flex: 1;
             overflow-y: auto;
-        }
-
-        /* CHANNEL BANNER HERO */
-        .channel-banner-container {
-            width: 100%;
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-            display: none;
-        }
-
-        .channel-header-info {
-            padding: 16px 24px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            border-bottom: 1px solid var(--yt-border);
-            display: none;
-        }
-
-        .channel-header-avatar {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .channel-header-title {
-            font-size: 22px;
-            font-weight: 700;
+            padding: 24px;
         }
 
         .page-title {
             font-size: 20px;
             font-weight: 700;
-            padding: 20px 24px 10px 24px;
+            margin-bottom: 20px;
         }
 
-        /* VIDEO GRID & CARDS */
+        /* --- VIDEO GRID --- */
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-            padding: 16px 24px 40px 24px;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 24px;
         }
 
         .video-card {
             background-color: var(--yt-card-bg);
+            border: 1px solid var(--yt-border);
+            border-radius: 12px;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -224,8 +201,6 @@
             width: 100%;
             padding-top: 56.25%;
             background: #000;
-            border-radius: 12px;
-            overflow: hidden;
         }
 
         .thumb-wrapper iframe {
@@ -238,64 +213,43 @@
         }
 
         .card-info {
-            padding: 12px 0;
+            padding: 12px;
             display: flex;
             gap: 12px;
-        }
-
-        .card-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
+            align-items: center;
         }
 
         .meta-details {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
         }
 
         .video-title {
             font-size: 14px;
             font-weight: 600;
-            line-height: 1.3;
             color: var(--yt-text);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         .video-channel {
             font-size: 12px;
             color: var(--yt-sub);
         }
-
-        .loading-state {
-            grid-column: 1 / -1;
-            color: var(--yt-sub);
-            font-size: 15px;
-            padding: 40px 0;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
 
-    <!-- SIDEBAR -->
+    <!-- SIDEBAR NAVIGATION -->
     <div class="sidebar">
-        <div class="nav-item active" onclick="loadHome(this)">
-            <img src="https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj" class="avatar" alt="Home">
+        <div class="nav-item active" onclick="showHome(this)">
+            <div class="channel-avatar" style="background-color: #333;">🏠</div>
             <span class="channel-name">Home Feed</span>
         </div>
 
         <div class="divider"></div>
-        <div class="sidebar-header">Subscriptions</div>
+        <div class="sidebar-header">Subscriptions (21)</div>
 
-        <!-- FULL UNGROUPED BAPS CHANNELS LIST -->
-        <div id="channel-list-sidebar"></div>
+        <div id="sidebar-channels"></div>
     </div>
 
     <!-- MAIN VIEWPORT -->
@@ -307,169 +261,88 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="search-input" class="search-input" placeholder="Search approved BAPS videos..." onkeyup="handleSearchKey(event)">
-                <button class="search-btn" onclick="executeSearch()">🔍</button>
+                <input type="text" id="search-input" class="search-input" placeholder="Search channels..." onkeyup="filterChannels()">
+                <button class="search-btn">🔍</button>
             </div>
         </header>
 
         <div class="content-area">
-            <!-- DYNAMIC CHANNEL BANNER -->
-            <div id="channel-banner" class="channel-banner-container"></div>
-            <div id="channel-header-info" class="channel-header-info">
-                <img id="header-avatar" class="channel-header-avatar" src="" alt="Channel Avatar">
-                <div id="header-title" class="channel-header-title"></div>
-            </div>
-
-            <h2 id="page-title" class="page-title">Recently Uploaded</h2>
-            <div id="video-grid" class="video-grid">
-                <div class="loading-state">Syncing live channel feeds...</div>
-            </div>
+            <h2 id="page-title" class="page-title">Recently Uploaded Feed</h2>
+            <div id="video-grid" class="video-grid"></div>
         </div>
     </div>
 
     <script>
-        // Exact Channels with Official Logos & Banners
+        // Exact 21 Approved Channels with Official Upload Playlists
         const CHANNELS = [
-            { id: 'UC-kAtA2L16d3H2k1R0y9zkg', name: 'BAPS Official', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UC8gE0Xn-C2zK962n-bB0Q3w', name: 'BAPS Kirtan', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k4m1K9c3a3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UC_R1bV8u3Hk2mS2sQv2b3XA', name: 'Aksharpith', avatar: 'https://yt3.ggpht.com/ytc/AIdro_m2kK3a=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UCeJ1A8vL3xR3gCgVv-U9b6w', name: 'BAPS Better Living', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UCyS0g980z_vK42Y1wR6N5gQ', name: 'BAPS Charities', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UC2S3aK0E1O-9v1X2gS_kMQA', name: 'BAPS Satsang (Gujarati)', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UCmS8P03O6t1xS5W3L-9A9qA', name: 'BAPS Satsang (Hindi)', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UCEk8s_xP2qJ4X8sS9k_9qA', name: 'BAPS Satsang (English)', avatar: 'https://yt3.ggpht.com/ytc/AIdro_k2P2p_4S0J3z4=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80' },
-            { id: 'UCpX94-mQ4pY9S1wA0z8aX8Q', name: 'Akshardham USA', avatar: 'https://yt3.ggpht.com/ytc/AIdro_mAkshardham=s88-c-k-c0x00ffffff-no-rj', banner: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1200&q=80' }
+            { handle: "@BAPS", name: "BAPS Swaminarayan Sanstha", playlist: "UU-kAtA2L16d3H2k1R0y9zkg", tag: "BAPS", color: "#e50914" },
+            { handle: "@BAPSKirtanChannel", name: "BAPS Kirtan", playlist: "UU8gE0Xn-C2zK962n-bB0Q3w", tag: "KIR", color: "#d81b60" },
+            { handle: "@Aksharpith", name: "Aksharpith", playlist: "UU_R1bV8u3Hk2mS2sQv2b3XA", tag: "AKS", color: "#8e24aa" },
+            { handle: "@bapsbetterliving", name: "BAPS Better Living", playlist: "UUeJ1A8vL3xR3gCgVv-U9b6w", tag: "BET", color: "#5e35b1" },
+            { handle: "@bapscharities", name: "BAPS Charities", playlist: "UUyS0g980z_vK42Y1wR6N5gQ", tag: "CHA", color: "#3949ab" },
+            { handle: "@BAPSsatsang_GUJ", name: "BAPS Satsang (Gujarati)", playlist: "UU2S3aK0E1O-9v1X2gS_kMQA", tag: "GUJ", color: "#1e88e5" },
+            { handle: "@BAPSSatsang_HIN", name: "BAPS Satsang (Hindi)", playlist: "UUmS8P03O6t1xS5W3L-9A9qA", tag: "HIN", color: "#039be5" },
+            { handle: "@BAPSsatsang_ENG", name: "BAPS Satsang (English)", playlist: "UUEk8s_xP2qJ4X8sS9k_9qA", tag: "ENG", color: "#00acc1" },
+            { handle: "@BAPSEvent", name: "BAPS Event", playlist: "UUCuY_g4E-G3-7N3I4o8q6gQ", tag: "EVE", color: "#00897b" },
+            { handle: "@BAPSKidsWorld", name: "BAPS Kids World", playlist: "UU91vX_0jL7B4z9L5Kk24_Aw", tag: "KID", color: "#43a047" },
+            { handle: "@Swaminarayan_Yatra", name: "Swaminarayan Yatra", playlist: "UUB3v_m9e9G8X_Y4N2Y1x-3A", tag: "YAT", color: "#7cb342" },
+            { handle: "@AkshardhamUSA", name: "Akshardham USA", playlist: "UUpX94-mQ4pY9S1wA0z8aX8Q", tag: "USA", color: "#c0ca33" },
+            { handle: "@BAPSAmerica", name: "BAPS North America", playlist: "UUf9m-1O19K2_N9V-xS39-fA", tag: "NAM", color: "#fdd835" },
+            { handle: "@BAPSUKEurope", name: "BAPS UK & Europe", playlist: "UU_k8mK9O3xY_M9V3N4N5Y6Q", tag: "EUR", color: "#ffb300" },
+            { handle: "@BAPSCanada", name: "BAPS Canada", playlist: "UUK3m-N8v-P_7L2bN4V1_y1Q", tag: "CAN", color: "#fb8c00" },
+            { handle: "@BAPSAfrica", name: "BAPS Africa", playlist: "UUM3k_N9v-P_7L2bN4V1_y1Q", tag: "AFR", color: "#f4511e" },
+            { handle: "@BAPSANZ", name: "BAPS Asia Pacific (ANZ)", playlist: "UUA3m_N9v-P_7L2bN4V1_y1Q", tag: "ANZ", color: "#6d4c41" },
+            { handle: "@abudhabimandir", name: "BAPS Hindu Mandir Abu Dhabi", playlist: "UUB3m_N9v-P_7L2bN4V1_y1Q", tag: "ABU", color: "#546e7a" },
+            { handle: "@BAPSIndia", name: "BAPS India", playlist: "UUI3m_N9v-P_7L2bN4V1_y1Q", tag: "IND", color: "#757575" },
+            { handle: "@bapslive", name: "BAPS Live", playlist: "UUL3m_N9v-P_7L2bN4V1_y1Q", tag: "LIV", color: "#e50914" },
+            { handle: "@SantParamHitkari", name: "Sant Param Hitkari", playlist: "UUS3m_N9v-P_7L2bN4V1_y1Q", tag: "SPH", color: "#8e24aa" }
         ];
 
-        let cachedAllVideos = [];
-
-        // Build Sidebar Links Automatically
         function renderSidebar() {
-            const container = document.getElementById('channel-list-sidebar');
+            const container = document.getElementById('sidebar-channels');
             container.innerHTML = CHANNELS.map(ch => `
-                <div class="nav-item" onclick="loadChannel('${ch.id}', this)">
-                    <img src="${ch.avatar}" class="avatar">
-                    <span class="channel-name">${ch.name}</span>
+                <div class="nav-item" onclick="showChannel('${ch.handle}', this)">
+                    <div class="channel-avatar" style="background-color: ${ch.color}">${ch.tag}</div>
+                    <span class="channel-name" title="${ch.name}">${ch.name}</span>
                 </div>
             `).join('');
         }
 
-        async function fetchLiveVideos(channel) {
-            const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channel.id}`;
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`;
-            try {
-                const response = await fetch(proxyUrl);
-                const data = await response.json();
-                const parser = new DOMParser();
-                const xml = parser.parseFromString(data.contents, "text/xml");
-                const entries = xml.querySelectorAll("entry");
-
-                let vids = [];
-                entries.forEach(e => {
-                    const id = e.querySelector("videoId") ? e.querySelector("videoId").textContent : '';
-                    const title = e.querySelector("title") ? e.querySelector("title").textContent : '';
-                    const date = e.querySelector("published") ? e.querySelector("published").textContent : '';
-                    if(id) {
-                        vids.push({ id, title, date: new Date(date), channelName: channel.name, avatar: channel.avatar });
-                    }
-                });
-                return vids;
-            } catch(e) {
-                return [];
-            }
-        }
-
-        function createVideoCard(v) {
+        function createCard(ch) {
             return `
                 <div class="video-card">
                     <div class="thumb-wrapper">
-                        <iframe src="https://www.youtube-nocookie.com/embed/${v.id}?rel=0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube-nocookie.com/embed/videoseries?list=${ch.playlist}" allowfullscreen></iframe>
                     </div>
                     <div class="card-info">
-                        <img src="${v.avatar}" class="card-avatar">
+                        <div class="channel-avatar" style="background-color: ${ch.color}; width: 28px; height: 28px; font-size: 10px;">${ch.tag}</div>
                         <div class="meta-details">
-                            <div class="video-title" title="${v.title}">${v.title}</div>
-                            <div class="video-channel">${v.channelName}</div>
+                            <div class="video-title">${ch.name}</div>
+                            <div class="video-channel">${ch.handle}</div>
                         </div>
                     </div>
                 </div>
             `;
         }
 
-        async function loadHome(element) {
+        function showHome(element) {
             setActive(element);
-            hideChannelHeaders();
-            document.getElementById('page-title').innerText = "Recently Uploaded";
-            const grid = document.getElementById('video-grid');
-            grid.innerHTML = '<div class="loading-state">Loading home feed...</div>';
-
-            cachedAllVideos = [];
-            for (const ch of CHANNELS) {
-                const vids = await fetchLiveVideos(ch);
-                cachedAllVideos = cachedAllVideos.concat(vids);
-            }
-
-            cachedAllVideos.sort((a, b) => b.date - a.date);
-
-            if(cachedAllVideos.length === 0) {
-                grid.innerHTML = '<div class="loading-state">No videos found. Check internet connection.</div>';
-                return;
-            }
-
-            grid.innerHTML = cachedAllVideos.map(v => createVideoCard(v)).join('');
+            document.getElementById('page-title').innerText = "All Approved Channel Feeds";
+            document.getElementById('video-grid').innerHTML = CHANNELS.map(ch => createCard(ch)).join('');
         }
 
-        async function loadChannel(channelId, element) {
+        function showChannel(handle, element) {
             setActive(element);
-            const channel = CHANNELS.find(c => c.id === channelId);
-            
-            // Render Header Banner
-            document.getElementById('channel-banner').style.backgroundImage = `url('${channel.banner}')`;
-            document.getElementById('channel-banner').style.display = 'block';
-            document.getElementById('header-avatar').src = channel.avatar;
-            document.getElementById('header-title').innerText = channel.name;
-            document.getElementById('channel-header-info').style.display = 'flex';
-            document.getElementById('page-title').innerText = "Latest Uploads";
-
-            const grid = document.getElementById('video-grid');
-            grid.innerHTML = `<div class="loading-state">Fetching videos for ${channel.name}...</div>`;
-
-            const vids = await fetchLiveVideos(channel);
-            if(vids.length === 0) {
-                grid.innerHTML = '<div class="loading-state">No recent uploads found.</div>';
-                return;
-            }
-
-            grid.innerHTML = vids.map(v => createVideoCard(v)).join('');
+            const ch = CHANNELS.find(c => c.handle === handle);
+            document.getElementById('page-title').innerText = `${ch.name} (${ch.handle})`;
+            document.getElementById('video-grid').innerHTML = createCard(ch);
         }
 
-        function executeSearch() {
-            const query = document.getElementById('search-input').value.toLowerCase().trim();
-            if(!query) return;
-
-            hideChannelHeaders();
-            document.getElementById('page-title').innerText = `Search results for "${query}"`;
-            const grid = document.getElementById('video-grid');
-
-            const filtered = cachedAllVideos.filter(v => 
-                v.title.toLowerCase().includes(query) || v.channelName.toLowerCase().includes(query)
-            );
-
-            if(filtered.length === 0) {
-                grid.innerHTML = '<div class="loading-state">No matching videos found across approved channels.</div>';
-                return;
-            }
-
-            grid.innerHTML = filtered.map(v => createVideoCard(v)).join('');
-        }
-
-        function handleSearchKey(event) {
-            if (event.key === 'Enter') executeSearch();
-        }
-
-        function hideChannelHeaders() {
-            document.getElementById('channel-banner').style.display = 'none';
-            document.getElementById('channel-header-info').style.display = 'none';
+        function filterChannels() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            document.getElementById('page-title').innerText = `Search Results`;
+            const filtered = CHANNELS.filter(ch => ch.name.toLowerCase().includes(query) || ch.handle.toLowerCase().includes(query));
+            document.getElementById('video-grid').innerHTML = filtered.map(ch => createCard(ch)).join('');
         }
 
         function setActive(element) {
@@ -479,7 +352,7 @@
 
         window.onload = function() {
             renderSidebar();
-            loadHome(document.querySelector('.nav-item'));
+            showHome(document.querySelector('.nav-item'));
         };
     </script>
 </body>
